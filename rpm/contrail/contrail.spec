@@ -495,6 +495,8 @@ chmod +x /etc/init.d/supervisor-analytics
 chmod +x /etc/init.d/contrail-analytics-api
 chmod +x /etc/init.d/contrail-collector
 chmod +x /etc/init.d/contrail-query-engine
+chmod +x /etc/init.d/contrail-snmp-collector
+chmod +x /etc/init.d/contrail-topology
 
 %package dns
 Summary:            Contrail Dns
