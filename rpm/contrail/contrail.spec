@@ -430,7 +430,7 @@ Requires:           python-psutil
 Requires:           python-prettytable
 Requires:           python-geventhttpclient
 Requires:           protobuf
-Requires:           netsnmp-python
+Requires:           net-snmp-python
 
 %description analytics
 Contrail Analytics package
