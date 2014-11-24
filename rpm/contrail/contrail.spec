@@ -319,8 +319,8 @@ Contrail Virtual Router NetNS package
 
 %files python-contrail-vrouter-netns
 %defattr(-,root,root)
-%{python_sitelib}/opencontrail_vrouter_netns*
-%{_bindir}/opencontrail-vrouter-netns
+%{python_sitelib}/opencontrail_vrouter_*
+%{_bindir}/opencontrail-vrouter-*
 
 
 %package lib
@@ -460,6 +460,9 @@ Analytics nodes collect, store, correlate, and analyze information from
 %{_bindir}/contrail-stats
 %{_bindir}/contrail-snmp-collector
 %{_bindir}/contrail-topology
+%{_bindir}/contrail-logs-api-audit
+%{_bindir}/contrail-snmp-collector
+%{_bindir}/contrail-topology
 /usr/share/doc/contrail-analytics-api
 /etc/contrail/supervisord_analytics.conf
 /etc/contrail/supervisord_analytics_files/contrail-analytics-api.ini
@@ -506,7 +509,8 @@ Requires:           authbind
 
 %description dns
 Contrail dns  package
-DNS provides dnsd, named, rndc deamons
+DNS provides contrail-dns, contrail-named, contrail-rndc and
+contrail-rndc-confgen daemons
 Provides vrouter services
 
 %pre dns
@@ -519,9 +523,9 @@ getent passwd contrail >/dev/null || \
 
 %post dns
 set -e
-mkdir -p /var/log/named /etc/contrail/dns
-chown -R contrail:adm /var/log/named
-chmod 0750 /var/log/named
+mkdir -p /var/log/contrail /etc/contrail/dns
+chown -R contrail:adm /var/log/contrail
+chmod 0750 /var/log/contrail
 chown -R contrail. /etc/contrail/dns
 chmod 0750 /etc/contrail/dns
 chmod +x /etc/init.d/contrail-dns
@@ -538,13 +542,14 @@ fi
 %files dns
 %defattr(-,contrail,contrail,-)
 %{_contraildns}
-%{_contraildns}/named.conf
-%{_contraildns}/rndc.conf
-%{_contraildns}/dns.conf
+%{_contraildns}/contrail-named.conf
+%{_contraildns}/contrail-rndc.conf
+%{_contraildns}/COPYRIGHT
 %defattr(-, root, root)
-%{_bindir}/named
-%{_bindir}/rndc
-%{_bindir}/dnsd
+%{_bindir}/contrail-named
+%{_bindir}/contrail-rndc
+%{_bindir}/contrail-rndc-confgen
+%{_bindir}/contrail-dns
 %if 0%{?rhel} > 6
 /usr/lib/python2.7/site-packages/doc/*
 %endif
